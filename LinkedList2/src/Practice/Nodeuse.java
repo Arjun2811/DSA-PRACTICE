@@ -4,84 +4,77 @@ public class Nodeuse {
 
 
 
-
-public static Node<Integer> Swap(Node<Integer>head ,int pos1,int pos2)
+public static Node<Integer> Reverse(Node<Integer>head)
 {
-    if(pos1==pos2)
+    Node<Integer>current=head;
+    Node<Integer>prev=null;
+    Node<Integer>next=null;
+    while(current!=null)
     {
-        return head;
+        next=current.next;
+        current.next=prev;
+        prev=current;
+        current=next;
     }
+return prev;
+}
 
 
-int i=0;
-Node<Integer>FNode=null;
-Node<Integer>SNode=null;
-Node<Integer>FNodeprev=null;
 
-Node<Integer>SNodeprev=null;
 
+public static boolean Palindrome(Node<Integer>head)
+{
+    if(head==null||head.next==null)
+    {
+        return true;
+    }
 Node<Integer>temp=head;
+int count=0;
 while(temp!=null)
 {
-    if(i==pos1-1)
-    {
-FNodeprev=temp;
-    }
-
-    if(i==pos1)
-    {
-   FNode=temp;
-    }
-    if(i==pos2)
-    {
-   SNode=temp;
-    }
-    if(i==pos2-1)
-    {
-   SNodeprev=temp;
-    }
-
+    count++;
     temp=temp.next;
+}
+Node<Integer>temp1=head;
+int i=0;
+while(i<(count/2)-1)
+{
     i++;
+    temp1=temp1.next;
 }
+Node<Integer>part2head=null;
 
-if(FNode==SNodeprev)
+    part2head=Reverse(temp1.next);
+
+
+
+    temp1.next=null; 
+
+
+
+while(head!=null&&part2head!=null)
 {
-    if(FNodeprev==null)
+    if(head.data!=part2head.data)
     {
-        temp=SNode.next;
-        SNode.next=FNode;
-        FNode.next=temp;
-        return SNode;
+        return false;
     }
-FNodeprev.next=SNode;
-temp=SNode.next;
-SNode.next=FNode;
-FNode.next=temp;
-return head;
+    else{
+        head=head.next;
+        part2head=part2head.next;
+    }
 }
-if(FNodeprev==null)
-{
-    temp=FNode.next;
-    Node<Integer>temp2=SNode.next;
-    head=SNode;
-    head.next=temp;
-    SNodeprev.next=FNode;
-    FNode.next=temp2;
-    return head;
-}
+return true;
 
-FNodeprev.next=SNode;
-SNodeprev.next=FNode;
-temp=SNode.next;
-SNode.next=FNode.next;
-FNode.next=temp;
 
-return head;
+
+
+
+
 
 
 
 }
+
 
 
 
@@ -123,12 +116,14 @@ return head;
                     }
                 }
                 public static void main(String[]args)
-                {
+                {Scanner s = new Scanner(System.in);
                     Node<Integer>head=takeinput();
                 
-      
-                    Node<Integer>finalhead=  Swap(head,0,4);
-                  print(finalhead);
+                //   System.out.println("PLEASE PRINT VALUE OF N");
+                //   int n=s.nextInt();
+                  boolean ans=Palindrome(head);
+                  System.out.println(ans);
+                //   print(finalhead);
                 }
 }
             
