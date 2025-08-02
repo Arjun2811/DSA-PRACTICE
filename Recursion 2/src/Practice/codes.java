@@ -3,53 +3,42 @@ import java.util.Scanner;
 public class codes {
 
 
-public static String[] permutation(String str,int n)
+
+
+
+public static int Multiply(int n,int m)
 {
-if(n==str.length())
+if(n==1)
 {
-String[]arr={" "};
-return arr;
+    return m;
 }
 
-
-
-   String[]arr= permutation(str,n+1);
-   String newarr[]=new String[arr.length*(arr[0].length()+1)];
-   int i=0;
-   int f=0;
-   while(i<arr.length)
-   {
-    int j=0;
-    while(j<arr[0].length())
-    {
-
-        newarr[f]=arr[i].substring(0,j)+str.charAt(n)+arr[i].substring(j);
-        j++;
-        f++;
-    }
-    newarr[f]=str.charAt(n)+arr[i];
-    f++;
-    i++;
-   }
-   return newarr;
+if(m==0||n==0)
+{
+    return 0;
+}
+if(m==1)
+{
+    return n;
 }
 
 
 
 
+int ans=Multiply(n, m-1);
+ans+=n;
+return ans;
 
 
+}
 
     public static void main(String[]args)
     {Scanner s = new Scanner(System.in);
-String str=s.next();
-String arr[]=permutation(str,0);
-int i=0;
-while(i<arr.length)
-{
-    System.out.println(arr[i]);
-    i++;
-}
+int n=s.nextInt();
+int m =s.nextInt();
+int ans=Multiply(n,m);
+System.out.println(ans);
+
 
 }
 
