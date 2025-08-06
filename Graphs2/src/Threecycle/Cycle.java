@@ -8,16 +8,17 @@ public class Cycle {
 
 public static int Cycle(boolean[][]arr,int fv,boolean visited[],int originalfv,int n)
 {
-
 visited[fv]=true;
 
 if(n==3)
 {int ans=0;
     if(arr[fv][originalfv]==true)
     {
+        System.out.println( fv+"  "+originalfv);
  ans=1;
 
     }
+    visited[fv]=false;
     return ans;
 }
 int i=0;
@@ -32,25 +33,24 @@ while(i<arr.length)
     i++;
 }
 return finalans;
-
-
-
-
 }
-
 
 
 
 public static int helper(boolean[][]arr)
 {
-
-
 int i=0;
 int count=0;
-
+boolean visited[]=new boolean[arr.length];
 while(i<arr.length)
 {
-    boolean visited[]=new boolean[arr.length];
+    int j=i;
+    while(j<arr.length)
+    {
+        
+        visited[j]=false;
+        j++;
+    }
     visited[i]=true;
  count+=Cycle(arr,i,visited,i,1);
     i++;
@@ -75,7 +75,7 @@ return count;
         i++;
         }
         int count=helper(arr);
-        System.out.println(count/v);
+        System.out.println(count);
 
     }
 }
