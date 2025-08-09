@@ -4,77 +4,53 @@ public class Nodeuse {
 
 
 
-public static Node<Integer> Reverse(Node<Integer>head)
+public static Node<Integer> Delete(Node<Integer>head,int m,int n)
 {
-    Node<Integer>current=head;
-    Node<Integer>prev=null;
-    Node<Integer>next=null;
-    while(current!=null)
+   if(head==null)
+   {
+    return head;
+   }
+    if(m==0&&n>0)
     {
-        next=current.next;
-        current.next=prev;
-        prev=current;
-        current=next;
+return null;
     }
-return prev;
-}
-
-
-
-
-public static boolean Palindrome(Node<Integer>head)
-{
-    if(head==null||head.next==null)
+    if(m==0&&n==0)
     {
-        return true;
+        return head;
     }
-Node<Integer>temp=head;
-int count=0;
-while(temp!=null)
-{
-    count++;
-    temp=temp.next;
-}
-Node<Integer>temp1=head;
+    if(n==0)
+    {
+        return head;
+    }
+    Node<Integer>temp=head;
+    Node<Integer>temp2=head;
+    while(temp!=null)
+    {
 int i=0;
-while(i<(count/2)-1)
+while(i<m-1&&temp!=null)
 {
     i++;
-    temp1=temp1.next;
+    temp=temp.next;
+    temp2=temp2.next;
 }
-Node<Integer>part2head=null;
-
-    part2head=Reverse(temp1.next);
-
-
-
-    temp1.next=null; 
-
-
-
-while(head!=null&&part2head!=null)
+if(temp!=null)
 {
-    if(head.data!=part2head.data)
-    {
-        return false;
+temp=temp.next;
     }
-    else{
-        head=head.next;
-        part2head=part2head.next;
+int j=0;
+while(j<n&&temp!=null)
+{
+temp=temp.next;
+j++;
+}
+if(temp2!=null)
+{
+temp2.next=temp;
+temp2=temp2.next;
+}
     }
+    return head;
 }
-return true;
-
-
-
-
-
-
-
-
-
-}
-
 
 
 
@@ -119,13 +95,10 @@ return true;
                 {Scanner s = new Scanner(System.in);
                     Node<Integer>head=takeinput();
                 
-                //   System.out.println("PLEASE PRINT VALUE OF N");
-                //   int n=s.nextInt();
-                  boolean ans=Palindrome(head);
-                  System.out.println(ans);
-                //   print(finalhead);
+               
+             Node<Integer>finalhead=Delete(head,2,2);
+             print(finalhead);
                 }
 }
-            
             
             
