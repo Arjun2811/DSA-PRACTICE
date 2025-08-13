@@ -4,52 +4,50 @@ import java.util.Stack;
 
 public class StackUse {
 
-public static boolean Redundant(String str)
+public static int[] Stockspan(int []arr)
 {
-Stack<Character>s1=new Stack<>();
-    int i=0;
-    while(i<str.length())
-    {
-
-
-if(str.charAt(i)!=')')
+    int arr1[]=new int[arr.length];
+    int n=arr.length-1;
+int i=0;
+Stack<Integer> s1=new Stack<>();
+while(i<arr.length)
 {
-    s1.push(str.charAt(i));
+s1.add(arr[i]);
+i++;
 }
-else{
-    int count=0;
-    while(s1.peek()!='(')
-    {
-
-if(s1.peek()=='+'||s1.peek()=='-'||s1.peek()=='*'||s1.peek()=='/')
+while(!s1.isEmpty())
+{int count=1;
+i=s1.size()-2;
+int value=s1.pop();
+while(i>=0)
 {
-    count++;
-}
 
-
-        s1.pop();
-    }
-    if(count==0)
+  
+    if(arr[i]>value)
     {
-        return true;
+        break;
     }
-    else{
-        s1.pop();
-    }
-    
+
+count++;
+   i--;
+}
+arr1[n]=count;
+n--;
 }
 
-
-        i++;
-    }
-    return false;
+return arr1;
 
 }
-
     public static void main(String[]args)
     {
-        String str="a+(b)+c";
-        boolean ans=Redundant(str);
-        System.out.println(ans);
+       int arr[]={60,70,80,100,90,75,80,120};
+        int ans[]=Stockspan(arr);
+        int i=0;
+        while(i<ans.length)
+        {
+            System.out.println(ans[i]);
+            i++;
+        }
+       
     }
 }
