@@ -3,8 +3,6 @@ package LootHouses;
 public class Recursion {
 
 
-    
-
 
     public static int Loothouses(int[]arr,int n)
     {
@@ -12,10 +10,6 @@ if(n<0)
 {
     return 0 ;
 }
-
-
-
-
 
 int maxfinal1=Loothouses(arr,n-1);
 int max=Loothouses(arr,n-2);
@@ -26,9 +20,6 @@ if(arr[n]+max>maxfinal1)
 else{
     return maxfinal1;
 }
-
-
-
 
     }
 
