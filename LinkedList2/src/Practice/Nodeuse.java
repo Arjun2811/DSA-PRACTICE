@@ -3,59 +3,58 @@ import java.util.Scanner;
 public class Nodeuse {
 
 
+public static Node<Integer> Kreverse(Node<Integer>head,int k)
+{
+Node<Integer>current=head;
+Node<Integer>prev=null;
+Node<Integer>next=null;
+Node<Integer>prevhead=null;
+Node<Integer>finalhead=null;
 
-public static Node<Integer> Delete(Node<Integer>head,int m,int n)
+while(current!=null)
 {
-   if(head==null)
-   {
-    return head;
-   }
-    if(m==0&&n>0)
-    {
-return null;
-    }
-    if(m==0&&n==0)
-    {
-        return head;
-    }
-    if(n==0)
-    {
-        return head;
-    }
-    Node<Integer>temp=head;
-    Node<Integer>temp2=head;
-    while(temp!=null)
-    {
-int i=0;
-while(i<m-1&&temp!=null)
+int i=1;
+
+while(i<=k&&current!=null)
 {
-    i++;
-    temp=temp.next;
-    temp2=temp2.next;
+    if(prev!=null&&prevhead==null)
+    {
+prevhead=prev;
+    }
+
+next=current.next;
+current.next=prev;
+prev=current;
+current=next;
+i++;
 }
-if(temp!=null)
+if(finalhead==null)
 {
-temp=temp.next;
-    }
-int j=0;
-while(j<n&&temp!=null)
-{
-temp=temp.next;
-j++;
+    finalhead=prev;
 }
-if(temp2!=null)
+
+if(prevhead!=null)
 {
-temp2.next=temp;
-temp2=temp2.next;
-}
-    }
-    return head;
+prevhead.next=prev;
 }
 
 
+prev=null;
+}
+return finalhead;
 
-        
-        
+
+
+
+
+
+
+
+
+
+
+
+}
             public static Node<Integer> takeinput()
             {Scanner s = new Scanner(System.in);
                 int data=s.nextInt();
@@ -96,7 +95,7 @@ temp2=temp2.next;
                     Node<Integer>head=takeinput();
                 
                
-             Node<Integer>finalhead=Delete(head,2,2);
+             Node<Integer>finalhead=Kreverse(head,2);
              print(finalhead);
                 }
 }
