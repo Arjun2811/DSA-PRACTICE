@@ -17,12 +17,13 @@ int arr[]={5,5,10,100,10,5};
 if(storage[n-1]>storage[n-2]+arr[n])
 {
 storage[n]=storage[n-1];
-
+n++;
 }
 else{
     storage[n]=storage[n-2]+arr[n];
+    n++;
 }
-n++;
+
     }
     System.out.println(storage[n-1]);
 }
