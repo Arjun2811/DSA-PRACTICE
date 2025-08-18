@@ -38,22 +38,8 @@ if(prevhead!=null)
 prevhead.next=prev;
 }
 
-
-prev=null;
 }
 return finalhead;
-
-
-
-
-
-
-
-
-
-
-
-
 }
             public static Node<Integer> takeinput()
             {Scanner s = new Scanner(System.in);
