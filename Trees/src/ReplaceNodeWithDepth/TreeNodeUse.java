@@ -1,4 +1,4 @@
-package SecondLargest;
+package ReplaceNodeWithDepth;
 
 import java.util.LinkedList;
 import java.util.Queue;
@@ -7,27 +7,27 @@ import java.util.Scanner;
 public class TreeNodeUse {
 
 
-    public static Result SecondLargest(TreeNode<Integer>root)
-    {
-
-Result finalans=new Result();
+public static void Replace(TreeNode<Integer>root,int g)
+{
+if(root==null)
+{
+    return;
+}
 int i=0;
 while(i<root.Children.size())
 {
-    Result ans=SecondLargest(root.Children.get(i));
-
+Replace(root.Children.get(i),g+1);
     i++;
 }
 
+root.data=g;
+return;
 
 
-    }
-
-
-
-
-
+   }
     
+
+
         public static TreeNode<Integer> takeinput()
         {Scanner s= new Scanner(System.in);
             Queue<TreeNode<Integer>> q1=new LinkedList();
@@ -84,13 +84,8 @@ while(i<root.Children.size())
         {
             TreeNode<Integer>root=takeinput();
             // print(root);
-            int ans=NodegreaterthanX(root,5);
-            System.out.println(ans);
+          Replace(root,0);
+          print(root);
+          
         }
     }
-    
-    
-    
-    
-    
-    
